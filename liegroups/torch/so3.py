@@ -47,7 +47,7 @@ class SO3Matrix(_base.SOMatrixBase):
             c = angle.cos().unsqueeze_(dim=1).unsqueeze_(
                 dim=2).expand_as(mat[large_angle_inds])
 
-            A = c * torch.eye(cls.dim, dtype=phi.dtype).unsqueeze_(dim=0).expand_as(
+            A = c * torch.eye(cls.dim, dtype=phi.dtype, device=phi.device).unsqueeze_(dim=0).expand_as(
                 mat[large_angle_inds])
             B = (1. - c) * utils.outer(axis, axis)
             C = s * cls.wedge(axis)
